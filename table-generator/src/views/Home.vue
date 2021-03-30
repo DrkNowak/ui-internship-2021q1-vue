@@ -50,11 +50,6 @@ export default {
   methods: {
     sortByColumnName(columnName) {
       switch (true) {
-        case this.sortOrder === sortOrderNames.DESC:
-          this.sortOrder = sortOrderNames.DEFAULT;
-          this.rowDataCopy = [...this.rowData];
-          break;
-
         case this.sortOrder === sortOrderNames.DEFAULT ||
           this.sortedColumn !== columnName:
           this.sortOrder = sortOrderNames.ASC;
@@ -65,10 +60,14 @@ export default {
           );
           break;
 
+        case this.sortOrder === sortOrderNames.DESC:
+          this.sortOrder = sortOrderNames.DEFAULT;
+          this.rowDataCopy = [...this.rowData];
+          break;
+
         case this.sortOrder === sortOrderNames.ASC:
           this.sortOrder = sortOrderNames.DESC;
           this.rowDataCopy.reverse();
-
           break;
       }
 
