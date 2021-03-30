@@ -1,40 +1,78 @@
 <template>
   <div class="home">
-    <TableGen :headers="computedData.headers" :content="computedData.content" />
+    <Columns
+      :headers="computedData.headers"
+      :sorted-column="sortedColumn"
+      :sort-order="sortOrder"
+      @columnHandler="sortByColumnName"
+    />
+    <Rows :rows-content="computedData.content" />
   </div>
 </template>
 
 <script>
-import TableGen from '@/components/TableGen';
+import Columns from '@/components/Columns';
+import Rows from '@/components/Rows';
+import { columnDefs, rowData } from '@/TableConfig';
+import sortOrderNames from '@/common/sortOrderNames';
 
 export default {
   name: 'Home',
 
   components: {
-    TableGen
+    Columns,
+    Rows
   },
 
   data() {
     return {
-      columnDefs: [{ field: 'make' }, { field: 'model' }, { field: 'price' }],
-      rowData: [
-        { make: 'Toyota', price: 35000, model: 'Celica' },
-        { make: 'Ford', model: 'Mondeo', price: 32000 },
-        { make: 'Porsche', model: 'Boxter', price: 72000 },
-        { make: 'Porsche', model: 'Boxter', price: 72000 }
-      ]
+      sortOrder: sortOrderNames.DEFAULT,
+      sortedColumn: '',
+      columnDefs: columnDefs,
+      rowData: rowData,
+      rowDataCopy: [...rowData]
     };
   },
 
   computed: {
     computedData() {
-      const headers = this.columnDefs.map((element) =>
-        Object.values(element).toString()
-      );
+      const headers = this.columnDefs.map((element) => Object.values(element));
+
       return {
         headers,
-        content: this.rowData.map((row) => headers.map((key) => row[key]))
+        content: this.rowDataCopy.map((row) =>
+          columnDefs.map((key) => row[key.field])
+        )
       };
+    }
+  },
+
+  methods: {
+    sortByColumnName(columnName) {
+      switch (true) {
+        case this.sortOrder === sortOrderNames.DESC:
+          this.sortOrder = sortOrderNames.DEFAULT;
+          this.rowDataCopy = [...this.rowData];
+          break;
+
+        case this.sortOrder === sortOrderNames.DEFAULT ||
+          this.sortedColumn !== columnName:
+          this.sortOrder = sortOrderNames.ASC;
+          this.rowDataCopy.sort((firstItem, secondItem) =>
+            !isNaN(firstItem[columnName]) && !isNaN(secondItem[columnName])
+              ? firstItem[columnName] - secondItem[columnName]
+              : firstItem[columnName].localeCompare(secondItem[columnName])
+          );
+          break;
+
+        case this.sortOrder === sortOrderNames.ASC:
+          this.sortOrder = sortOrderNames.DESC;
+          this.rowDataCopy.reverse();
+
+          break;
+      }
+
+      this.sortedColumn = columnName;
     }
   }
 };
