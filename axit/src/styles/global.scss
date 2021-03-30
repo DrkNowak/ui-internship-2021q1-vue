@@ -1,0 +1,40 @@
+@import './variables/colors.scss';
+@import './variables/fontSizes.scss';
+@import './variables/fonts.scss';
+@import './mixins.scss';
+
+.hdr__logo {
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+
+  span {
+    color: $orange;
+    font-weight: 300;
+  }
+}
+
+.main__section {
+  background-color: $white;
+  display: flex;
+  justify-content: space-between;
+  padding: 7% 10vw 8%;
+  .main__h3 {
+    font-size: $hdrSmall;
+    font-weight: 700;
+  }
+  .main__paragraph {
+    font-size: $paragraph;
+    color: $paragraphGrey;
+  }
+  .main__line {
+    width: 64px;
+    height: 3px;
+    border-bottom: $orange solid 2px;
+  }
+  .main__photo {
+    width: 47%;
+    object-fit: contain;
+  }
+}
