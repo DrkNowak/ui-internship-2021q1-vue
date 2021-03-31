@@ -4,7 +4,7 @@
       :headers="computedData.headers"
       :sorted-column="sortedColumn"
       :sort-order="sortOrder"
-      @columnHandler="sortByColumnName"
+      @sortByColumnName="sortByColumnName"
     />
     <Rows :rows-content="computedData.content" />
   </div>
@@ -13,9 +13,15 @@
 <script>
 import Columns from '@/components/Columns';
 import Rows from '@/components/Rows';
-import { columnDefs, rowData } from '@/TableConfig';
+import {
+  columnDefs,
+  rowData,
+  generateColumnNames,
+  generateRowContent
+} from '@/TableConfig';
 import sortOrderNames from '@/common/sortOrderNames';
 
+const { DEFAULT, ASC, DESC } = sortOrderNames;
 export default {
   name: 'Home',
 
@@ -26,7 +32,7 @@ export default {
 
   data() {
     return {
-      sortOrder: sortOrderNames.DEFAULT,
+      sortOrder: DEFAULT,
       sortedColumn: '',
       columnDefs: columnDefs,
       rowData: rowData,
@@ -36,39 +42,44 @@ export default {
 
   computed: {
     computedData() {
-      const headers = this.columnDefs.map((element) => Object.values(element));
+      const headers = generateColumnNames(this.columnDefs);
+      const content = generateRowContent(this.rowDataCopy);
 
       return {
         headers,
-        content: this.rowDataCopy.map((row) =>
-          columnDefs.map((key) => row[key.field])
-        )
+        content
       };
     }
   },
 
   methods: {
     sortByColumnName(columnName) {
-      switch (true) {
-        case this.sortOrder === sortOrderNames.DEFAULT ||
-          this.sortedColumn !== columnName:
-          this.sortOrder = sortOrderNames.ASC;
-          this.rowDataCopy.sort((firstItem, secondItem) =>
-            !isNaN(firstItem[columnName]) && !isNaN(secondItem[columnName])
-              ? firstItem[columnName] - secondItem[columnName]
-              : firstItem[columnName].localeCompare(secondItem[columnName])
+      const shouldBecomeDefault =
+        this.sortOrder === DEFAULT || this.sortedColumn !== columnName;
+
+      switch (this.sortOrder) {
+        case shouldBecomeDefault ? this.sortOrder : false: {
+          this.sortOrder = ASC;
+          this.rowDataCopy.sort((firstRowItem, secondRowItem) =>
+            !isNaN(firstRowItem[columnName]) &&
+            !isNaN(secondRowItem[columnName])
+              ? firstRowItem[columnName] - secondRowItem[columnName]
+              : firstRowItem[columnName].localeCompare(
+                  secondRowItem[columnName]
+                )
           );
           break;
-
-        case this.sortOrder === sortOrderNames.DESC:
-          this.sortOrder = sortOrderNames.DEFAULT;
+        }
+        case DESC: {
+          this.sortOrder = DEFAULT;
           this.rowDataCopy = [...this.rowData];
           break;
-
-        case this.sortOrder === sortOrderNames.ASC:
-          this.sortOrder = sortOrderNames.DESC;
+        }
+        case ASC: {
+          this.sortOrder = DESC;
           this.rowDataCopy.reverse();
           break;
+        }
       }
 
       this.sortedColumn = columnName;
