@@ -5,7 +5,7 @@
       :key="index"
       class="cars__table"
     >
-      <p v-for="cell in row" :key="cell">{{ cell }}</p>
+      <p v-for="(cell, cellIndex) in row" :key="cellIndex">{{ cell }}</p>
     </div>
   </div>
 </template>
