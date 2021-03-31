@@ -6,7 +6,7 @@
         :key="columnName"
         class="cars__header"
         :class="{ 'cars__header--sortable': sortable }"
-        @click="sort(columnName, sortable)"
+        @click="sortByColumnName(columnName, sortable)"
       >
         <p>
           {{ columnName }}
@@ -54,20 +54,23 @@ export default {
 
   computed: {
     assignSortClass() {
+      const { ASC, DESC } = sortOrderNames;
+
       switch (this.sortOrder) {
-        case sortOrderNames.ASC:
+        case ASC:
           return this.classes.asc;
-        case sortOrderNames.DESC:
+        case DESC:
           return this.classes.desc;
         default:
           return '';
       }
     }
   },
+
   methods: {
-    sort(header, sortable) {
+    sortByColumnName(header, sortable) {
       if (sortable) {
-        this.$emit('columnHandler', header);
+        this.$emit('sortByColumnName', header);
       }
     }
   }
