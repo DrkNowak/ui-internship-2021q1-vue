@@ -3,6 +3,7 @@ const columnDefs = [
   { field: 'model', sortable: false },
   { field: 'price', sortable: true }
 ];
+
 const rowData = [
   { make: 'Toyota', price: 35000, model: 'Celica' },
   { make: 'Ford', model: 'Mondeo', price: 32000 },
@@ -12,4 +13,10 @@ const rowData = [
   { make: 'c', model: 'f', price: 3 }
 ];
 
-export { columnDefs, rowData };
+const generateColumnNames = (columnDefs) =>
+  columnDefs.map((element) => Object.values(element));
+
+const generateRowContent = (rowData) =>
+  rowData.map((row) => columnDefs.map((key) => row[key.field]));
+
+export { columnDefs, rowData, generateColumnNames, generateRowContent };
