@@ -2,11 +2,11 @@
   <div class="cars">
     <div class="cars__table cars__table--headers">
       <div
-        v-for="[columnName, sortable] in headers"
+        v-for="[columnName, isSortable] in headers"
         :key="columnName"
         class="cars__header"
-        :class="{ 'cars__header--sortable': sortable }"
-        @click="sortByColumnName(columnName, sortable)"
+        :class="{ 'cars__header--sortable': isSortable }"
+        @click="sortByColumnName(columnName, isSortable)"
       >
         <p>
           {{ columnName }}
@@ -68,8 +68,8 @@ export default {
   },
 
   methods: {
-    sortByColumnName(header, sortable) {
-      if (sortable) {
+    sortByColumnName(header, isSortable) {
+      if (isSortable) {
         this.$emit('sortByColumnName', header);
       }
     }
