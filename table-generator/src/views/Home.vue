@@ -60,14 +60,14 @@ export default {
       switch (this.sortOrder) {
         case shouldBecomeDefault ? this.sortOrder : false: {
           this.sortOrder = ASC;
-          this.rowDataCopy.sort((firstRowItem, secondRowItem) =>
-            !isNaN(firstRowItem[columnName]) &&
-            !isNaN(secondRowItem[columnName])
-              ? firstRowItem[columnName] - secondRowItem[columnName]
-              : firstRowItem[columnName].localeCompare(
-                  secondRowItem[columnName]
-                )
-          );
+          this.rowDataCopy.sort((firstRowItem, secondRowItem) => {
+            const firstColumnName = firstRowItem[columnName];
+            const secondColumnName = secondRowItem[columnName];
+
+            return !isNaN(firstColumnName) && !isNaN(secondColumnName)
+              ? firstColumnName - secondRowItem[columnName]
+              : firstColumnName.localeCompare(secondColumnName);
+          });
           break;
         }
         case DESC: {
