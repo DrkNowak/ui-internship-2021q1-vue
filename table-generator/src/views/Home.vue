@@ -54,30 +54,42 @@ export default {
 
   methods: {
     sortByColumnName(columnName) {
+      const sortAscOrder = () => {
+        this.sortOrder = ASC;
+        this.rowDataCopy.sort((firstRowItem, secondRowItem) => {
+          const firstColumnName = firstRowItem[columnName];
+          const secondColumnName = secondRowItem[columnName];
+
+          return !isNaN(firstColumnName) && !isNaN(secondColumnName)
+            ? firstColumnName - secondRowItem[columnName]
+            : firstColumnName.localeCompare(secondColumnName);
+        });
+      };
+
+      const sortDefaultOrder = () => {
+        this.sortOrder = DEFAULT;
+        this.rowDataCopy = [...this.rowData];
+      };
+
+      const sortDescOrder = () => {
+        this.sortOrder = DESC;
+        this.rowDataCopy.reverse();
+      };
+
       const shouldBecomeDefault =
         this.sortOrder === DEFAULT || this.sortedColumn !== columnName;
 
       switch (this.sortOrder) {
         case shouldBecomeDefault ? this.sortOrder : false: {
-          this.sortOrder = ASC;
-          this.rowDataCopy.sort((firstRowItem, secondRowItem) => {
-            const firstColumnName = firstRowItem[columnName];
-            const secondColumnName = secondRowItem[columnName];
-
-            return !isNaN(firstColumnName) && !isNaN(secondColumnName)
-              ? firstColumnName - secondRowItem[columnName]
-              : firstColumnName.localeCompare(secondColumnName);
-          });
+          sortAscOrder();
           break;
         }
         case DESC: {
-          this.sortOrder = DEFAULT;
-          this.rowDataCopy = [...this.rowData];
+          sortDefaultOrder();
           break;
         }
         case ASC: {
-          this.sortOrder = DESC;
-          this.rowDataCopy.reverse();
+          sortDescOrder();
           break;
         }
       }
