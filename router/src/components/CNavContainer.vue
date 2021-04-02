@@ -60,7 +60,7 @@ export default {
 .nav-link {
   text-decoration: none;
   text-transform: uppercase;
-  color: #777;
+  color: #bbb;
   margin-right: 10px;
   font-family: 'Squada One', cursive;
 }

@@ -34,6 +34,7 @@ export default {
 
 .nav-header {
   font-family: 'Arial Narrow';
+  letter-spacing: 2px;
   font-weight: 500;
 }
 </style>
