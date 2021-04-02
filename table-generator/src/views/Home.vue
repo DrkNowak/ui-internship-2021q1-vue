@@ -1,88 +1,40 @@
 <template>
   <div class="home">
-    <Columns
-      :headers="computedData.headers"
-      :sorted-column="sortedColumn"
-      :sort-order="sortOrder"
-      @sortByColumnName="sortByColumnName"
-    />
-    <Rows :rows-content="computedData.content" />
+    <TableGen :headers="computedData.headers" :content="computedData.content" />
   </div>
 </template>
 
 <script>
-import Columns from '@/components/Columns';
-import Rows from '@/components/Rows';
-import {
-  columnDefs,
-  rowData,
-  generateColumnNames,
-  generateRowContent
-} from '@/TableConfig';
-import sortOrderNames from '@/common/sortOrderNames';
+import TableGen from '@/components/TableGen';
 
-const { DEFAULT, ASC, DESC } = sortOrderNames;
 export default {
   name: 'Home',
 
   components: {
-    Columns,
-    Rows
+    TableGen
   },
 
   data() {
     return {
-      sortOrder: DEFAULT,
-      sortedColumn: '',
-      columnDefs: columnDefs,
-      rowData: rowData,
-      rowDataCopy: [...rowData]
+      columnDefs: [{ field: 'make' }, { field: 'model' }, { field: 'price' }],
+      rowData: [
+        { make: 'Toyota', price: 35000, model: 'Celica' },
+        { make: 'Ford', model: 'Mondeo', price: 32000 },
+        { make: 'Porsche', model: 'Boxter', price: 72000 },
+        { make: 'Porsche', model: 'Boxter', price: 72000 }
+      ]
     };
   },
 
   computed: {
     computedData() {
-      const headers = generateColumnNames(this.columnDefs);
-      const content = generateRowContent(this.rowDataCopy);
-
+      const headers = this.columnDefs.map((element) =>
+        Object.values(element).toString()
+      );
       return {
         headers,
-        content
+        content: this.rowData.map((row) => headers.map((key) => row[key]))
       };
-    }
-  },
-
-  methods: {
-    sortByColumnName(columnName) {
-      const shouldBecomeDefault =
-        this.sortOrder === DEFAULT || this.sortedColumn !== columnName;
-
-      switch (this.sortOrder) {
-        case shouldBecomeDefault ? this.sortOrder : false: {
-          this.sortOrder = ASC;
-          this.rowDataCopy.sort((firstRowItem, secondRowItem) =>
-            !isNaN(firstRowItem[columnName]) &&
-            !isNaN(secondRowItem[columnName])
-              ? firstRowItem[columnName] - secondRowItem[columnName]
-              : firstRowItem[columnName].localeCompare(
-                  secondRowItem[columnName]
-                )
-          );
-          break;
-        }
-        case DESC: {
-          this.sortOrder = DEFAULT;
-          this.rowDataCopy = [...this.rowData];
-          break;
-        }
-        case ASC: {
-          this.sortOrder = DESC;
-          this.rowDataCopy.reverse();
-          break;
-        }
-      }
-
-      this.sortedColumn = columnName;
     }
   }
 };
