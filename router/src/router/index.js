@@ -18,15 +18,15 @@ export const routes = [
     meta: { display: true }
   },
   {
-    path: '/team-management',
-    name: 'Team Management',
-    component: () => import('@/views/TeamManagement'),
-    meta: { display: false }
-  },
-  {
     path: '/user-management',
     name: 'User Management',
     component: () => import('@/views/UserManagement'),
+    meta: { display: false }
+  },
+  {
+    path: '/team-management',
+    name: 'Team Management',
+    component: () => import('@/views/TeamManagement'),
     meta: { display: true }
   }
 ];
@@ -38,7 +38,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  to.matched.some((record) => record.meta.display) ? next() : next(false);
+  to.matched.some((record) => record.meta.display) ? next() : next('/');
 });
 
 export default router;

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <CHeader />
-    <Container />
+    <CNavContainer><router-view /></CNavContainer>
   </div>
 </template>
 
 <script>
-import Container from '@/components/Container';
+import CNavContainer from '@/components/CNavContainer';
 import CHeader from '@/components/CHeader';
 
 export default {
@@ -14,7 +14,7 @@ export default {
 
   components: {
     CHeader,
-    Container
+    CNavContainer
   }
 };
 </script>
