@@ -1,6 +1,6 @@
 <template>
   <main class="main-wrapper">
-    <CNavHeader :is-active="isClickable" />
+    <CNavHeader />
     <nav v-if="$route.meta.display">
       <router-link
         v-for="{ name, path } in routes"
@@ -31,12 +31,6 @@ export default {
     return {
       routes
     };
-  },
-
-  computed: {
-    isClickable() {
-      return this.$route.path === '/';
-    }
   }
 };
 </script>
@@ -47,11 +41,11 @@ export default {
 }
 
 .nav-link {
+  margin-right: 10px;
+  color: #bbb;
+  font-family: 'Squada One', cursive;
   text-decoration: none;
   text-transform: uppercase;
-  color: #bbb;
-  margin-right: 10px;
-  font-family: 'Squada One', cursive;
 }
 
 .router-link-active {
@@ -65,8 +59,8 @@ export default {
   top: 100%;
   left: 0;
   display: block;
-  background-color: #000;
   height: 2px;
   width: 100%;
+  background-color: #000;
 }
 </style>

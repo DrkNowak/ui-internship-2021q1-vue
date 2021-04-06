@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <router-link v-if="!isActive" :to="'/'" class="nav-link">
-      <CIcon />
-      <h1 class="nav-header">Roles & Permissions</h1>
-    </router-link>
-    <h1 v-else class="nav-header">Roles & Permissions</h1>
+  <div
+    class="nav-home-btn"
+    :class="{ 'nav-home-btn-clickable': !isHomePage }"
+    @click="returnHome"
+  >
+    <CIcon v-if="!isHomePage" />
+    <h1 class="nav-header">Roles & Permissions</h1>
   </div>
 </template>
 
@@ -17,24 +18,34 @@ export default {
   components: {
     CIcon
   },
-  props: {
-    isActive: {
-      type: Boolean
+
+  computed: {
+    isHomePage() {
+      return this.$route.path === '/';
+    }
+  },
+
+  methods: {
+    returnHome() {
+      if (!this.isHomePage) this.$router.push('/');
     }
   }
 };
 </script>
 
 <style scoped>
-.nav-link {
+.nav-home-btn {
   position: relative;
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 
 .nav-header {
   font-family: 'Arial Narrow';
   letter-spacing: 2px;
   font-weight: 500;
+}
+.nav-home-btn-clickable {
+  cursor: pointer;
 }
 </style>

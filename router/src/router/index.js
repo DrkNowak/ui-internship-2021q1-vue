@@ -37,10 +37,4 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
-  to.matched.some((record) => {
-    return record.meta.display ? next() : next(false);
-  });
-});
-
 export default router;

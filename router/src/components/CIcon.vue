@@ -5,7 +5,7 @@
 <style scoped>
 .icon {
   position: absolute;
-  right: 5px;
+  left: -18px;
   top: 10px;
   font-size: 20px;
 }
