@@ -1,17 +1,17 @@
 <template>
   <main class="main-wrapper">
-    <CNavHeader :is-active="isClickable" @click.native="returnToHomePage" />
-    <nav v-if="isNavigation">
+    <CNavHeader :is-active="isClickable" />
+    <nav v-if="$route.meta.display">
       <router-link
-        v-for="{ name, path, meta } in routes"
+        v-for="{ name, path } in routes"
         :key="name"
         :to="path"
         class="nav-link"
         exact
-        @click.native="hideNavigation(meta.display)"
         >{{ name }}</router-link
       >
     </nav>
+
     <slot />
   </main>
 </template>
@@ -29,24 +29,13 @@ export default {
 
   data() {
     return {
-      routes,
-      isNavigation: true
+      routes
     };
   },
 
   computed: {
     isClickable() {
-      return !this.isNavigation || this.$route.path !== '/';
-    }
-  },
-
-  methods: {
-    hideNavigation(display) {
-      this.isNavigation = display;
-    },
-
-    returnToHomePage() {
-      this.isNavigation = true;
+      return this.$route.path === '/';
     }
   }
 };

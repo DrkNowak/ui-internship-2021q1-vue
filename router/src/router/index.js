@@ -38,7 +38,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  to.matched.some((record) => record.meta.display) ? next() : next('/');
+  to.matched.some((record) => {
+    return record.meta.display ? next() : next(false);
+  });
 });
 
 export default router;

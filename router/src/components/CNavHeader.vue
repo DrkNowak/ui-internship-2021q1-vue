@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link v-if="isActive" :to="'/'" class="nav-link">
+    <router-link v-if="!isActive" :to="'/'" class="nav-link">
       <CIcon />
       <h1 class="nav-header">Roles & Permissions</h1>
     </router-link>
@@ -12,7 +12,7 @@
 import CIcon from '@/components/CIcon';
 
 export default {
-  name: 'Roles',
+  name: 'CNavHeader',
 
   components: {
     CIcon
