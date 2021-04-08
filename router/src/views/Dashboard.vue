@@ -2,10 +2,10 @@
   <div class="dashboard">
     <div v-if="!isLoading" class="dashboard__container">
       <DashboardTab
-        v-for="(item, title) in tabContent"
+        v-for="(content, title) in tabContent"
         :key="title"
         :tab-title="title"
-        :tab-content="item"
+        :tab-content="content"
       />
     </div>
     <h1 v-else>Loading...</h1>
