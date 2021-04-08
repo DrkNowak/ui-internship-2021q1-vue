@@ -49,8 +49,8 @@ export default {
   flex-direction: column;
   width: 350px;
   height: 150px;
-  margin-top: 3%;
-  padding: 10px;
+  margin: 3%;
+  padding: 20px 10px;
   border: 1px solid #ccc;
 }
 
@@ -61,7 +61,7 @@ export default {
 }
 
 .tab__header {
-  margin: 10px 0;
+  margin: 0 0 10px 0;
   font-size: 16px;
 }
 
