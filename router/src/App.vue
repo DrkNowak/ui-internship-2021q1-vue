@@ -22,7 +22,13 @@ export default {
 </script>
 
 <style>
-body {
+body,
+p,
+h3 {
   margin: 0;
+}
+
+* {
+  font-family: 'Squada One', cursive;
 }
 </style>
