@@ -8,5 +8,5 @@ app.use(cors());
 app.listen(3000);
 
 app.get('/', (req, res) => {
-  res.json(dataSummary);
+  setTimeout(()=>res.json(dataSummary),2000);
 });
