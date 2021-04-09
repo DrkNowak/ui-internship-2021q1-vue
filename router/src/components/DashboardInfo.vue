@@ -2,7 +2,7 @@
   <article class="info">
     <h3 class="info__header">{{ tabTitle }} created</h3>
     <div v-if="isLoading" class="lds-dual-ring"></div>
-    <p v-else class="info__amount">{{ getAmount }}</p>
+    <p v-else class="info__amount">{{ tabContent.amount }}</p>
     <div class="info__show">
       <p class="info__show-all">show all {{ tabTitle }}</p>
       <i class="fas fa-chevron-right" />
@@ -26,12 +26,6 @@ export default {
     },
 
     isLoading: Boolean
-  },
-
-  computed: {
-    getAmount() {
-      return this.tabContent.amount;
-    }
   }
 };
 </script>
