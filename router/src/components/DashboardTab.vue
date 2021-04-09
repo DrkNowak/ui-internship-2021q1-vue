@@ -2,11 +2,7 @@
   <div class="tab">
     <h2 class="tab__header">{{ tabTitle }} Management</h2>
     <div class="tab__inside">
-      <DashboardInfo
-        :tab-title="tabTitle"
-        :tab-content="tabContent"
-        :is-loading="isLoading"
-      />
+      <DashboardInfo v-bind="dashboardProps" />
       <div class="tab__buttons">
         <CButton :button-title="`add ${tabTitle}`" button-icon="fa-plus" />
         <CButton button-title="performance" button-icon="fa-clone" />
@@ -40,6 +36,16 @@ export default {
 
     isLoading: {
       type: Boolean
+    }
+  },
+
+  computed: {
+    dashboardProps() {
+      return {
+        tabTitle: this.tabTitle,
+        tabContent: this.tabContent,
+        isLoading: this.isLoading
+      };
     }
   }
 };
