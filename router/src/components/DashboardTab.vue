@@ -8,7 +8,7 @@
         :is-loading="isLoading"
       />
       <div class="tab__buttons">
-        <CButton :button-title="'add ' + tabTitle" button-icon="fa-plus" />
+        <CButton :button-title="`add ${tabTitle}`" button-icon="fa-plus" />
         <CButton button-title="performance" button-icon="fa-clone" />
       </div>
     </div>
