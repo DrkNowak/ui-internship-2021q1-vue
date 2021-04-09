@@ -25,9 +25,7 @@ export default {
       default: () => ({})
     },
 
-    isLoading: {
-      type: Boolean
-    }
+    isLoading: Boolean
   },
 
   computed: {
