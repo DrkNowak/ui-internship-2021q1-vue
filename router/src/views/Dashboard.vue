@@ -1,14 +1,14 @@
 <template>
   <div class="dashboard">
-    <div v-if="!isLoading" class="dashboard__container">
+    <div class="dashboard__container">
       <DashboardTab
         v-for="(content, title) in tabContent"
         :key="title"
         :tab-title="title"
         :tab-content="content"
+        :is-loading="isLoading"
       />
     </div>
-    <h1 v-else>Loading...</h1>
   </div>
 </template>
 
@@ -25,8 +25,11 @@ export default {
 
   data() {
     return {
-      tabContent: [],
-      tabTitles: [],
+      tabContent: {
+        users: {},
+        teams: {},
+        roles: {}
+      },
       isLoading: false
     };
   },
@@ -37,7 +40,6 @@ export default {
       const { data = {} } = (await ApiClient.get()) || {};
 
       this.tabContent = data;
-      this.tabTitles = Object.keys(data);
     } catch (error) {
       console.log(error);
       this.isError = !this.isError;

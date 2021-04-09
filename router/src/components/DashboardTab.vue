@@ -2,7 +2,11 @@
   <div class="tab">
     <h2 class="tab__header">{{ tabTitle }} Management</h2>
     <div class="tab__inside">
-      <DashboardInfo :tab-title="tabTitle" :tab-content="tabContent" />
+      <DashboardInfo
+        :tab-title="tabTitle"
+        :tab-content="tabContent"
+        :is-loading="isLoading"
+      />
       <div class="tab__buttons">
         <CButton :button-title="'add ' + tabTitle" button-icon="fa-plus" />
         <CButton button-title="performance" button-icon="fa-clone" />
@@ -32,6 +36,10 @@ export default {
     tabContent: {
       type: Object,
       default: () => ({})
+    },
+
+    isLoading: {
+      type: Boolean
     }
   }
 };

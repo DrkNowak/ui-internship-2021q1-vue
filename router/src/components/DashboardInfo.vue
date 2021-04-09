@@ -1,7 +1,8 @@
 <template>
   <article class="info">
     <h3 class="info__header">{{ tabTitle }} created</h3>
-    <p class="info__amount">{{ getAmount }}</p>
+    <p v-if="!isLoading" class="info__amount">{{ getAmount }}</p>
+    <div v-else class="lds-dual-ring"></div>
     <div class="info__show">
       <p class="info__show-all">show all {{ tabTitle }}</p>
       <i class="fas fa-chevron-right"></i>
@@ -22,6 +23,10 @@ export default {
     tabContent: {
       type: Object,
       default: () => ({})
+    },
+
+    isLoading: {
+      type: Boolean
     }
   },
 
@@ -62,5 +67,32 @@ export default {
 
 .info__show-all {
   font-family: sans-serif;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 78px;
+  height: 78px;
+}
+
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 50%;
+  height: 50%;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #ccc;
+  border-color: #ccc transparent #ccc transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
