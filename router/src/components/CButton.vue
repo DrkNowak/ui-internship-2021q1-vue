@@ -1,7 +1,7 @@
 <template>
   <div class="c-button">
     <p>{{ buttonTitle }}</p>
-    <i class="fas" :class="buttonIcon"></i>
+    <i class="fas" :class="buttonIcon" />
   </div>
 </template>
 

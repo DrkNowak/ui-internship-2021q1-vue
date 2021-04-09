@@ -5,7 +5,7 @@
     <p v-else class="info__amount">{{ getAmount }}</p>
     <div class="info__show">
       <p class="info__show-all">show all {{ tabTitle }}</p>
-      <i class="fas fa-chevron-right"></i>
+      <i class="fas fa-chevron-right" />
     </div>
   </article>
 </template>
