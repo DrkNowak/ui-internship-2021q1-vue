@@ -1,8 +1,8 @@
 <template>
   <article class="info">
     <h3 class="info__header">{{ tabTitle }} created</h3>
-    <p v-if="!isLoading" class="info__amount">{{ getAmount }}</p>
-    <div v-else class="lds-dual-ring"></div>
+    <div v-if="isLoading" class="lds-dual-ring"></div>
+    <p v-else class="info__amount">{{ getAmount }}</p>
     <div class="info__show">
       <p class="info__show-all">show all {{ tabTitle }}</p>
       <i class="fas fa-chevron-right"></i>
