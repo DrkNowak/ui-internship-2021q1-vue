@@ -14,7 +14,7 @@
 
 <script>
 import DashboardTab from '@/components/DashboardTab.vue';
-import ApiClient from '@/services/AxiosClient';
+import apiClient from '@/services/AxiosClient';
 
 export default {
   name: 'Dashboard',
@@ -35,17 +35,7 @@ export default {
   },
 
   async mounted() {
-    try {
-      this.isLoading = true;
-      const { data = {} } = (await ApiClient.get()) || {};
-
-      this.tabContent = data;
-    } catch (error) {
-      console.log(error);
-      this.isError = !this.isError;
-    } finally {
-      this.isLoading = false;
-    }
+    this.getData();
   }
 };
 </script>
