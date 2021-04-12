@@ -54,5 +54,6 @@ export default {
 .dashboard__container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 </style>

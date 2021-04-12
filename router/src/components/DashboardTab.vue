@@ -51,19 +51,12 @@ export default {
 };
 </script>
 
-<style>
-.tab {
-  text-transform: uppercase;
-}
-</style>
-
 <style scoped>
 .tab {
   display: flex;
   flex-direction: column;
-  width: 350px;
-  height: 150px;
-  margin: 3%;
+  min-width: 350px;
+  margin: 40px 5px;
   padding: 20px 10px;
   border: 1px solid #ccc;
 }
