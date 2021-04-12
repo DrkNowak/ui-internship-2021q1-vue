@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import DashboardInfo from '@/components/DashboardInfo';
 import CButton from '@/components/CButton';
+import DashboardInfo from '@/components/DashboardInfo';
 
 export default {
   name: 'DashboardTab',
@@ -24,6 +24,10 @@ export default {
   },
 
   props: {
+    isLoading: {
+      type: Boolean
+    },
+
     tabTitle: {
       type: String,
       default: ''
@@ -32,10 +36,6 @@ export default {
     tabContent: {
       type: Object,
       default: () => ({})
-    },
-
-    isLoading: {
-      type: Boolean
     }
   },
 
