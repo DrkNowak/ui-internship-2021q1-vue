@@ -22,7 +22,14 @@ export default {
 </script>
 
 <style>
-body {
+* {
+  font-family: 'Squada One', cursive;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.tab {
+  text-transform: uppercase;
 }
 </style>

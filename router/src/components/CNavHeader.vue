@@ -35,6 +35,7 @@ export default {
 
 <style scoped>
 .nav-home-btn {
+  margin: 30px 0;
   position: relative;
   color: #000;
   text-decoration: none;
