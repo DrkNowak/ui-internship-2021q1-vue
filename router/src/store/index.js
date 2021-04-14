@@ -4,4 +4,4 @@ import users from './users/index';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store(users);
+export default new Vuex.Store({ modules: { users } });
