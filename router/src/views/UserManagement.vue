@@ -3,15 +3,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 export default {
   name: 'UserManagemenet',
 
-  data() {
-    return {
-      data: []
-    };
-  },
   computed: {
     getUsers() {
       return this.$store.getters.getUsers;
