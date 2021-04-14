@@ -14,7 +14,6 @@
 
 <script>
 import DashboardTab from '@/components/DashboardTab.vue';
-import apiClient from '@/services/AxiosClient';
 
 export default {
   name: 'Dashboard',

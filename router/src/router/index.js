@@ -21,7 +21,7 @@ export const routes = [
     path: '/user-management',
     name: 'User Management',
     component: () => import('@/views/UserManagement'),
-    meta: { display: false }
+    meta: { display: true }
   },
   {
     path: '/team-management',

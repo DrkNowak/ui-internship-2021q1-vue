@@ -1,5 +1,39 @@
 <template>
-  <div class="user-management">
-    <p>user-management</p>
-  </div>
+  <div class="user-management" @click="showUsers"></div>
 </template>
+
+<script>
+import { mapState } from 'vuex';
+export default {
+  name: 'UserManagemenet',
+
+  data() {
+    return {
+      data: []
+    };
+  },
+  computed: {
+    getUsers() {
+      return this.$store.getters.getUsers;
+    }
+  },
+
+  async mounted() {
+    this.$store.dispatch('fetchUsers');
+  },
+
+  methods: {
+    showUsers() {
+      console.log(this.getUsers);
+    }
+  }
+};
+</script>
+
+<style scoped>
+.user-management {
+  width: 400px;
+  height: 400px;
+  background-color: red;
+}
+</style>

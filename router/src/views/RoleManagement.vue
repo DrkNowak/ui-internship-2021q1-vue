@@ -1,5 +1,3 @@
 <template>
-  <div class="role-management">
-    <p>role-managmeent</p>
-  </div>
+  <div class="role-management"></div>
 </template>
