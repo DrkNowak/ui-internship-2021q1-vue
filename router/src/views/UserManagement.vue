@@ -9,7 +9,7 @@ export default {
   name: 'UserManagement',
 
   computed: {
-    ...mapGetters({ getUsers: 'users/getUsers' })
+    ...mapGetters('users', { users: 'getUsers' })
   },
 
   async mounted() {
@@ -18,10 +18,10 @@ export default {
 
   methods: {
     showUsers() {
-      console.log(this.getUsers);
+      console.log(this.users);
     },
 
-    ...mapActions({ fetchUsers: 'users/fetchUsers' })
+    ...mapActions('users', ['fetchUsers'])
   }
 };
 </script>
