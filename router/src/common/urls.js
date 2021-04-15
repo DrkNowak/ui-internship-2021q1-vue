@@ -1,4 +1,6 @@
+const baseUrl = 'http://localhost:3000';
+
 export default {
-  apiUrl: 'http://localhost:3000/',
-  usersUrl: 'http://localhost:3000/users'
+  baseUrl,
+  usersUrl: `${baseUrl}/users`
 };
