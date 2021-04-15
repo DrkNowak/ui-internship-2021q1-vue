@@ -1,0 +1,993 @@
+[
+    {
+        "id": 1,
+        "email": "irina.aksenova@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "email": "anton.prokhorov@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "email": "mariana.konstantinova@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "email": "alexandr.serbin@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "email": "augusto.nasso@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "email": "eugene.boico@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "email": "andrii.prokofiev@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "email": "roman.zakharov@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "email": "kamil.wasilonek@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "email": "alisha.maknojia@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "email": "barrett.kenney@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "email": "marawan.gadalla2@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 2,
+                "name": "NOW",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "email": "raja.babu@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "email": "rajesh.putta@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "email": "ravi.shivanavvagol@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "email": "barathi.varadadesigan@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "email": "sandhya.purumandla@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "email": "michelle.vasquez@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "email": "arjunraghavan.manathanath@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 1,
+                "name": "Case_Management",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "email": "kim.devereux@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "email": "ranjitha.mohan@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "email": "anjana.nava@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 1,
+                "name": "Case_Management",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "email": "suvalakshmiesaiki.muthu@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 1,
+                "name": "Case_Management",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "email": "srikanth.gorijavolu@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 1,
+                "name": "Case_Management",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "email": "melissa.heidrick@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "email": "sindujaya.devaraju@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 1,
+                "name": "Case_Management",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "email": "abhirami.muthuramalingam@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "email": "nayana.narayanan2@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "email": "pituwala.alahakoon@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "email": "neethu.reena@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "email": "arun.kannan@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "email": "vipin.padmanabhan@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "email": "jeyasundari.jeyaraman@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "email": "peili.shen@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "email": "kevin.xu@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "email": "melody.chang@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "email": "iraitz.pascual@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "email": "aneesh.komalanbindhu@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "email": "bala.kopparthi@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "email": "shashikanth.pebbana@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "email": "s.atlas@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 4,
+                "name": "IQE",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "email": "samia.saleem@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 5,
+                "name": "TPM_UX",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "email": "salve.pascual@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 5,
+                "name": "TPM_UX",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "email": "riley.powell@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 5,
+                "name": "TPM_UX",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "email": "vinodhini.guruswamy@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 1,
+                "name": "Case_Management",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "email": "a.osdnow.autotestacc@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [
+            {
+                "role": {
+                    "id": 1,
+                    "name": "super_role",
+                    "geo": {
+                        "id": "GC",
+                        "name": "Greater China"
+                    }
+                },
+                "accessMode": "READ_WRITE"
+            }
+        ],
+        "teams": []
+    },
+    {
+        "id": 47,
+        "email": "savitha.avadhanam@nike.com",
+        "geos": [
+            {
+                "id": "GC",
+                "name": "Greater China"
+            }
+        ],
+        "roleToAccess": [],
+        "teams": [
+            {
+                "id": 3,
+                "name": "E2E",
+                "geo": {
+                    "id": "GC",
+                    "name": "Greater China"
+                }
+            }
+        ]
+    }
+  ]
+  
