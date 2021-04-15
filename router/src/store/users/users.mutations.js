@@ -1,5 +1,5 @@
 export default {
-  SET_USER(state, data) {
-    state.users = data;
+  SET_USER(state, users) {
+    state.users = users;
   }
 };
