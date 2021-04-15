@@ -3,23 +3,25 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
-  name: 'UserManagemenet',
+  name: 'UserManagement',
 
   computed: {
-    getUsers() {
-      return this.$store.getters.getUsers;
-    }
+    ...mapGetters({ getUsers: 'users/getUsers' })
   },
 
   async mounted() {
-    this.$store.dispatch('fetchUsers');
+    this.fetchUsers();
   },
 
   methods: {
     showUsers() {
       console.log(this.getUsers);
-    }
+    },
+
+    ...mapActions({ fetchUsers: 'users/fetchUsers' })
   }
 };
 </script>
