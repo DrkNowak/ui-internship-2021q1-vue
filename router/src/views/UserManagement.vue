@@ -1,5 +1,35 @@
 <template>
-  <div class="user-management">
-    <p>user-management</p>
-  </div>
+  <div class="user-management" @click="showUsers"></div>
 </template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+  name: 'UserManagement',
+
+  computed: {
+    ...mapGetters('users', { users: 'getUsers' })
+  },
+
+  async mounted() {
+    this.fetchUsers();
+  },
+
+  methods: {
+    showUsers() {
+      console.log(this.users);
+    },
+
+    ...mapActions('users', ['fetchUsers'])
+  }
+};
+</script>
+
+<style scoped>
+.user-management {
+  width: 400px;
+  height: 400px;
+  background-color: red;
+}
+</style>
