@@ -4,11 +4,7 @@
       class="ag-theme-alpine grid"
       :column-defs="columnDefs"
       :row-data="rowData"
-      :grid-options="gridOptions"
-      :pagination="true"
-      :pagination-auto-page-size="true"
-      :suppress-auto-size="true"
-      :default-col-def="defaultColDef"
+      :grid-options="renderOptions"
     />
   </div>
 </template>
@@ -27,7 +23,7 @@ export default {
   data() {
     return {
       columnDefs: [],
-      gridOptions: {}
+      renderOptions: {}
     };
   },
 
@@ -35,26 +31,23 @@ export default {
     ...mapGetters('users', { users: 'getUsers' }),
 
     rowData() {
-      const rows = this.users.map((itemField) => ({
-        email: itemField?.email,
-        geography: itemField?.geos.map((geoItem) => geoItem?.name),
-        roles: itemField?.roleToAccess.map((roleItem) => roleItem?.role?.name),
-        teams: itemField?.teams.map((teamItem) => teamItem?.name)
+      const rows = this.users.map(({ email, geos, roleToAccess, teams }) => ({
+        email: email,
+        geography: geos.map((geoItem) => geoItem?.name),
+        roles: roleToAccess.map((roleItem) => roleItem?.role?.name),
+        teams: teams.map((teamItem) => teamItem?.name)
       }));
 
       const countedRows = rows.map((row) => {
-        const countedRow = {};
-
-        Object.keys(row).forEach((field) => {
+        return Object.keys(row).reduce((countedRow, field) => {
           const isAmount =
             typeof row[field] === 'object' && row[field].length > 1;
 
           isAmount
             ? (countedRow[field] = `${row[field].length} (${row[field]})`)
             : (countedRow[field] = row[field]);
-        });
-
-        return countedRow;
+          return countedRow;
+        }, {});
       });
 
       return countedRows;
@@ -86,6 +79,12 @@ export default {
       sortable: true,
       filter: true,
       flex: 1
+    };
+
+    this.renderOptions = {
+      pagination: 'true',
+      paginationAutoPageSize: 'true',
+      defaultColDef: this.defaultColDef
     };
   },
 
