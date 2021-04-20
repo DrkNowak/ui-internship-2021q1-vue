@@ -31,12 +31,14 @@ export default {
     ...mapGetters('users', { users: 'getUsers' }),
 
     rowData() {
-      const rows = this.users.map(({ email, geos, roleToAccess, teams }) => ({
-        email: email,
-        geography: geos.map((geoItem) => geoItem?.name),
-        roles: roleToAccess.map((roleItem) => roleItem?.role?.name),
-        teams: teams.map((teamItem) => teamItem?.name)
-      }));
+      const rows = this.users.map(
+        ({ email = '', geos = {}, roleToAccess = {}, teams = {} }) => ({
+          email: email,
+          geography: geos.map((geoItem) => geoItem?.name),
+          roles: roleToAccess.map((roleItem) => roleItem?.role?.name),
+          teams: teams.map((teamItem) => teamItem?.name)
+        })
+      );
 
       const countedRows = rows.map((row) => {
         return Object.keys(row).reduce((countedRow, field) => {
