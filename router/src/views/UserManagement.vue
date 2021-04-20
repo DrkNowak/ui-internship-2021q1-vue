@@ -33,21 +33,22 @@ export default {
     rowData() {
       const rows = this.users.map(
         ({ email = '', geos = {}, roleToAccess = {}, teams = {} }) => ({
-          email: email,
-          geography: geos.map((geoItem) => geoItem?.name),
-          roles: roleToAccess.map((roleItem) => roleItem?.role?.name),
-          teams: teams.map((teamItem) => teamItem?.name)
+          email,
+          geography: geos.map(({ name }) => name),
+          roles: roleToAccess.map(({ role }) => role?.name),
+          teams: teams.map(({ name }) => name)
         })
       );
 
       const countedRows = rows.map((row) => {
         return Object.keys(row).reduce((countedRow, field) => {
-          const isAmount =
-            typeof row[field] === 'object' && row[field].length > 1;
+          const rowItem = row[field];
+          const isAmount = typeof rowItem === 'object' && rowItem.length > 1;
 
-          isAmount
-            ? (countedRow[field] = `${row[field].length} (${row[field]})`)
-            : (countedRow[field] = row[field]);
+          countedRow[field] = isAmount
+            ? `${rowItem.length} (${rowItem})`
+            : rowItem;
+
           return countedRow;
         }, {});
       });
@@ -59,22 +60,27 @@ export default {
   beforeMount() {
     this.columnDefs = [
       {
-        field: 'email',
-        tooltipField: 'email'
+        field: 'email'
       },
       {
-        field: 'geography',
-        tooltipField: 'geography'
+        field: 'geography'
       },
       {
-        field: 'roles',
-        tooltipField: 'roles'
+        field: 'roles'
       },
       {
-        field: 'teams',
-        tooltipField: 'teams'
+        field: 'teams'
       }
     ];
+
+    const columnDefsTooltips = this.columnDefs.map((column) => {
+      const tooltipColumn = { ...column };
+
+      tooltipColumn.tooltipField = column.field;
+
+      return tooltipColumn;
+    });
+    this.columnDefs = columnDefsTooltips;
 
     this.defaultColDef = {
       resizable: true,
