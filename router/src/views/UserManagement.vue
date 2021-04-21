@@ -73,13 +73,11 @@ export default {
       }
     ];
 
-    const columnDefsTooltips = this.columnDefs.map((column) => {
-      const tooltipColumn = { ...column };
+    const columnDefsTooltips = this.columnDefs.map((column) => ({
+      ...column,
+      tooltipField: column.field
+    }));
 
-      tooltipColumn.tooltipField = column.field;
-
-      return tooltipColumn;
-    });
     this.columnDefs = columnDefsTooltips;
 
     this.defaultColDef = {
@@ -90,8 +88,8 @@ export default {
     };
 
     this.renderOptions = {
-      pagination: 'true',
-      paginationAutoPageSize: 'true',
+      pagination: true,
+      paginationAutoPageSize: true,
       defaultColDef: this.defaultColDef
     };
   },
