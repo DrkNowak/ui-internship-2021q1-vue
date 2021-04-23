@@ -3,11 +3,11 @@ const cors = require('cors');
 const fs = require('fs');
 
 const dataSummary = require('./dataSummary.json');
-const users = require('./users.json');
+let users = require('./users.json');
 
 const app = express();
-app.use(cors());
 
+app.use(cors());
 app.listen(3000);
 
 app.get('/', (req, res) =>{
