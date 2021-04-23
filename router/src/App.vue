@@ -1,11 +1,9 @@
 <template>
   <div id="app">
     <CHeader />
-    <v-app>
-      <CNavContainer>
-        <router-view />
-      </CNavContainer>
-    </v-app>
+    <CNavContainer>
+      <router-view />
+    </CNavContainer>
   </div>
 </template>
 
