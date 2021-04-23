@@ -20,20 +20,12 @@ app.get('/users', (req, res) =>{
   
 })
 
-app.delete('/users:id', (req, res)=>{
-  const  id  = req.params
-  const desiredIndex = id.id.slice(1,id.id.length)
-  users.forEach((element,index) => {
-    
-    
-  if(element.id === parseInt(desiredIndex)) {
+app.delete('/users/::id', (req, res)=>{
+  const id = req.params.id;
   
-    users.splice(index,1);
-  }
-  });
- 
-  fs.writeFileSync('users.json', JSON.stringify(users))
-  res.send('user deleted')
-  
-  
+  users = users.filter(element => (element.id !== parseInt(id)));
+
+  fs.writeFileSync('users.json', JSON.stringify(users));
+  res.send('user deleted');
+
 })
