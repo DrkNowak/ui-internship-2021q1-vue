@@ -1,13 +1,13 @@
 import Vue from 'vue';
+
+import apiCall from '@/mixins/apiCall';
+import vuetify from './plugins/vuetify';
+
 import App from './App.vue';
 import router from './router';
 import store from './store/index';
-import apiCall from '@/mixins/apiCall';
-import outclick from '@/directives/OutClick';
-import vuetify from './plugins/vuetify';
 
 Vue.mixin(apiCall);
-Vue.directive('outclick', outclick);
 
 Vue.config.productionTip = false;
 
