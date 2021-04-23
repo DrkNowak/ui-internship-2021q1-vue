@@ -29,10 +29,6 @@ export default Vue.extend({
     };
   },
 
-  beforeMount() {
-    console.log(this.params.data);
-  },
-
   methods: {
     async removeUser() {
       this.deleteUser(this.params.data.id);
@@ -43,5 +39,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style scoped></style>
