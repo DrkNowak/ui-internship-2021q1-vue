@@ -6,11 +6,11 @@
       </template>
       <v-list>
         <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
+          v-for="{ title } in items"
+          :key="title"
           @click="removeUser"
         >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title>{{ title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -30,7 +30,7 @@ export default Vue.extend({
   },
 
   methods: {
-    async removeUser() {
+    removeUser() {
       this.deleteUser(this.params.data.id);
       this.fetchUsers();
     },
