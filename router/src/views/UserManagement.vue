@@ -1,17 +1,23 @@
 <template>
   <div>
-    <AgGridVue
-      class="ag-theme-alpine grid"
-      :column-defs="columnDefs"
-      :row-data="rowData"
-      :grid-options="renderOptions"
-    />
+    <v-app>
+      <AgGridVue
+        class="ag-theme-alpine grid"
+        :column-defs="columnDefs"
+        :row-data="rowData"
+        :grid-options="renderOptions"
+        :framework-components="frameworkComponents"
+        :tes="'test'"
+      />
+    </v-app>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { AgGridVue } from 'ag-grid-vue';
+
+import TabMenu from '@/components/TabMenu';
 
 export default {
   name: 'UserManagement',
@@ -32,7 +38,8 @@ export default {
 
     rowData() {
       const rows = this.users.map(
-        ({ email = '', geos = {}, roleToAccess = {}, teams = {} }) => ({
+        ({ id, email = '', geos = {}, roleToAccess = {}, teams = {} }) => ({
+          id,
           email,
           geography: geos.map(({ name }) => name),
           roles: roleToAccess.map(({ role }) => role?.name),
@@ -43,7 +50,7 @@ export default {
       const countedRows = rows.map((row) => {
         return Object.keys(row).reduce((countedRow, field) => {
           const rowItem = row[field];
-          const isAmount = typeof rowItem === 'object' && rowItem.length > 1;
+          const isAmount = Array.isArray(rowItem) && rowItem.length > 1;
 
           countedRow[field] = isAmount
             ? `${rowItem.length} (${rowItem})`
@@ -58,6 +65,13 @@ export default {
   },
 
   beforeMount() {
+    this.defaultColDef = {
+      resizable: true,
+      sortable: true,
+      filter: true,
+      flex: 1
+    };
+
     this.columnDefs = [
       {
         field: 'email'
@@ -70,6 +84,15 @@ export default {
       },
       {
         field: 'teams'
+      },
+      {
+        cellRendererFramework: TabMenu,
+        resizable: false,
+        sortable: false,
+        filter: false,
+        singleClickEdit: true,
+        flex: 0,
+        width: 40
       }
     ];
 
@@ -79,13 +102,6 @@ export default {
     }));
 
     this.columnDefs = columnDefsTooltips;
-
-    this.defaultColDef = {
-      resizable: true,
-      sortable: true,
-      filter: true,
-      flex: 1
-    };
 
     this.renderOptions = {
       pagination: true,
@@ -99,10 +115,6 @@ export default {
   },
 
   methods: {
-    showUsers() {
-      console.log(this.users);
-    },
-
     ...mapActions('users', ['fetchUsers'])
   }
 };
