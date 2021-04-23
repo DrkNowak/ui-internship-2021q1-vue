@@ -6,6 +6,6 @@ export default {
     return apiClient.get(urls.usersUrl);
   },
   deleteUser(id) {
-    return apiClient.delete(`${urls.usersUrl}:${id}`);
+    return apiClient.delete(`${urls.usersUrl}/:${id}`);
   }
 };
