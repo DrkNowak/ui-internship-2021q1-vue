@@ -2,8 +2,20 @@ import userService from '@/services/userService';
 
 export default {
   async fetchUsers({ commit }) {
-    const { data = {} } = (await userService.getUsers()) || {};
+    try {
+      const { data = {} } = (await userService.getUsers()) || {};
 
-    commit('SET_USER', data);
+      commit('SET_USER', data);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async deleteUser({ commit }, id) {
+    try {
+      await userService.deleteUser(id);
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
