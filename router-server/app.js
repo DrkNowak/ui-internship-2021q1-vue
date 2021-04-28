@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const dataSummary = require('./dataSummary.json');
 let users = require('./users.json');
+const roles = require('./roles.json');
 
 const app = express();
 
@@ -28,4 +29,9 @@ app.delete('/users/::id', (req, res)=>{
   fs.writeFileSync('users.json', JSON.stringify(users));
   res.send('user deleted');
 
+})
+
+app.get('/roles', (req, res) =>{
+  res.json(roles);
+  
 })
