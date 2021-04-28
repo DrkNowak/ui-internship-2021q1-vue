@@ -1,5 +1,5 @@
 <template>
-  <article class="info">
+  <article class="amount-info">
     <h3 class="info__header">{{ tabTitle }} created</h3>
     <div v-if="isLoading" class="lds-dual-ring"></div>
     <p v-else class="info__amount">{{ tabContent.amount }}</p>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.info {
+.amount-info {
   display: flex;
   flex-direction: column;
   padding: 5px 20px 5px 10px;
