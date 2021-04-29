@@ -123,8 +123,8 @@ export default {
           roleField;
 
         return isPlainObject
-          ? !!Object.values(roleField).length
-          : !!roleField.length;
+          ? Object.values(roleField).length
+          : roleField.length;
       });
 
       return isFilled;
