@@ -7,42 +7,66 @@
         </template>
 
         <v-card class="modal-dialog">
-          <v-card-title> Add role and permissions </v-card-title>
-          <div v-if="geos" class="v-card-container">
+          <v-btn
+            icon
+            dark
+            color="#000"
+            class="close-btn"
+            @click="dialog = false"
+          >
+            <v-icon>mdi-close</v-icon></v-btn
+          >
+          <div class="form-header">
+            <h3>Add role & permissions</h3>
+          </div>
+
+          <div v-if="geos" class="card-container">
             <v-select
               v-model="newRole.geos"
-              return-object
-              class="select"
               :items="geos"
+              outlined
+              return-object
+              class="card-container__geos"
               item-text="name"
               item-value="id"
               label="Geos"
             ></v-select>
             <v-text-field
               v-model="newRole.name"
+              outlined
+              :rules="[rules.required]"
               label="Role name"
-              required
-            ></v-text-field>
+              class="card-container__role-name"
+            />
           </div>
 
           <v-container v-if="formData" fluid class="perm-container">
             <div v-for="(perms, permName) in formData" :key="permName">
+              <h3 class="perm-container__headers">
+                {{ checkboxHeaders[permName] }}
+              </h3>
               <v-checkbox
                 v-for="permission in perms"
                 :key="permission.name"
                 v-model="newRole[permName]"
                 :value="permission"
-                :label="permission.name"
+                :label="`${permission.sapId} - ${permission.name}`"
               ></v-checkbox>
             </div>
           </v-container>
 
-          <p>{{ newRole }}</p>
-
           <v-card-actions>
             <v-spacer />
-            <v-btn text @click="dialog = false"> Cancel </v-btn>
-            <v-btn text :disabled="!isFulfilled" @click="confirmForm">
+            <v-btn outlined rounded text @click="dialog = false">
+              Cancel
+            </v-btn>
+            <v-btn
+              outlined
+              rounded
+              text
+              :disabled="!isFulfilled"
+              @click="confirmForm"
+            >
               Save
             </v-btn>
           </v-card-actions>
@@ -59,8 +83,21 @@ export default {
   data() {
     return {
       dialog: false,
-      rolesPerms: {},
-      newRole: {}
+      checkboxHeaders: {
+        salesOrganizations: 'Sales Org',
+        businessTypes: 'Business Type',
+        orderTypes: 'Order Type'
+      },
+      newRole: {
+        name: '',
+        geos: {},
+        orderTypes: [],
+        salesOrganizations: [],
+        businessTypes: []
+      },
+      rules: {
+        required: (value) => !!value || 'Required.'
+      }
     };
   },
 
@@ -73,15 +110,25 @@ export default {
     },
 
     formData() {
-      const { orderTypes, salesOrganizations, businessTypes } = this.roles;
+      const { salesOrganizations, orderTypes, businessTypes } = this.roles;
 
-      return { orderTypes, salesOrganizations, businessTypes };
+      return { salesOrganizations, orderTypes, businessTypes };
     },
 
     isFulfilled() {
-      return (
-        Object.keys(this.newRole).length === Object.keys(this.roles).length + 1
-      );
+      const isFilled = Object.values(this.newRole).every((roleField) => {
+        const isPlainObject =
+          typeof roleField === 'object' &&
+          !Array.isArray(roleField) &&
+          roleField;
+
+        console.log(!!roleField.length);
+        return isPlainObject
+          ? !!Object.values(roleField).length
+          : !!roleField.length;
+      });
+
+      return isFilled;
     }
   },
 
@@ -103,9 +150,9 @@ export default {
       const desiredFormat = {
         name: name,
         geos: { id: geos.id },
-        orderTypes: { id: orderTypes.id },
-        salesOrganizations: { id: salesOrganizations.id },
-        businessTypes: { id: businessTypes.id }
+        orderTypes: orderTypes.map((order) => ({ id: order.id })),
+        salesOrganizations: salesOrganizations.map((org) => ({ id: org.id })),
+        businessTypes: businessTypes.map((type) => ({ id: type.id }))
       };
 
       console.log(desiredFormat);
@@ -121,17 +168,41 @@ export default {
   padding: 10px;
 }
 
-.v-card-container {
-  display: flex;
-  justify-content: space-around;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-.select {
-  flex: 0.3;
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+  text-transform: uppercase;
+}
+
+.card-container {
+  display: flex;
+
+  &__geos {
+    flex: 0.25;
+  }
+
+  &__role-name {
+    flex: 0.4;
+  }
+
+  .v-text-field.v-text-field--enclosed {
+    margin-right: 30px;
+  }
 }
 
 .perm-container {
   display: flex;
   justify-content: space-between;
+
+  &__headers {
+    font-family: sans-serif;
+  }
 }
 </style>
