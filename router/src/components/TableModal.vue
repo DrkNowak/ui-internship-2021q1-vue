@@ -122,7 +122,6 @@ export default {
           !Array.isArray(roleField) &&
           roleField;
 
-        console.log(!!roleField.length);
         return isPlainObject
           ? !!Object.values(roleField).length
           : !!roleField.length;
