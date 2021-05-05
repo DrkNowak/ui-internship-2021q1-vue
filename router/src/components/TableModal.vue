@@ -1,19 +1,37 @@
 <template>
   <div class="text-center">
-    <v-dialog v-model="dialog" width="1000">
+    <v-dialog
+      v-model="dialog"
+      width="1000"
+    >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn dark v-bind="attrs" v-on="on"> add Role </v-btn>
+        <v-btn
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          add Role
+        </v-btn>
       </template>
 
       <v-card class="modal-dialog">
-        <v-btn icon dark color="#000" class="close-btn" @click="dialog = false">
-          <v-icon>mdi-close</v-icon></v-btn
+        <v-btn
+          icon
+          dark
+          color="#000"
+          class="close-btn"
+          @click="closeModal"
         >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
         <div class="form-header">
           <h3>Add role & permissions</h3>
         </div>
 
-        <div v-if="geos" class="card-container">
+        <div
+          v-if="geos"
+          class="card-container"
+        >
           <v-select
             v-model="newRole.geos"
             :items="geos"
@@ -23,7 +41,7 @@
             item-text="name"
             item-value="id"
             label="Geos"
-          ></v-select>
+          />
           <v-text-field
             v-model="newRole.name"
             outlined
@@ -33,24 +51,38 @@
           />
         </div>
 
-        <v-container v-if="formData" fluid class="perm-container">
-          <div v-for="(perms, permName) in formData" :key="permName">
-            <h3 class="perm-container__headers">
-              {{ checkboxHeaders[permName] }}
+        <v-container
+          v-if="formData"
+          fluid
+          class="permissions-container"
+        >
+          <div
+            v-for="(permissions, permissionName) in formData"
+            :key="permissionName"
+          >
+            <h3 class="permissions-container__headers">
+              {{ checkboxHeaders[permissionName] }}
             </h3>
             <v-checkbox
-              v-for="permission in perms"
+              v-for="permission in permissions"
               :key="permission.name"
-              v-model="newRole[permName]"
+              v-model="newRole[permissionName]"
               :value="permission"
               :label="`${permission.sapId} - ${permission.name}`"
-            ></v-checkbox>
+            />
           </div>
         </v-container>
 
         <v-card-actions>
           <v-spacer />
-          <v-btn outlined rounded text @click="dialog = false"> Cancel </v-btn>
+          <v-btn
+            outlined
+            rounded
+            text
+            @click="closeModal"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             outlined
             rounded
@@ -127,6 +159,11 @@ export default {
 
   methods: {
     ...mapActions('roles', ['fetchRoles']),
+
+    closeModal() {
+      this.dialog = false;
+    },
+
     confirmForm() {
       const {
         name,
@@ -189,7 +226,7 @@ export default {
   }
 }
 
-.perm-container {
+.permissions-container {
   display: flex;
   justify-content: space-between;
 

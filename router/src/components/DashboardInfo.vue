@@ -1,10 +1,12 @@
 <template>
-  <article class="amount-info">
-    <h3 class="info__header">{{ tabTitle }} created</h3>
-    <div v-if="isLoading" class="lds-dual-ring"></div>
-    <p v-else class="info__amount">{{ tabContent.amount }}</p>
-    <div class="info__show">
-      <p class="info__show-all">show all {{ tabTitle }}</p>
+  <article class="amount">
+    <h3 class="amount__header">{{ tabTitle }} created</h3>
+    <div v-if="isLoading" class="lds-dual-ring" />
+    <p v-else class="amount__created">
+      {{ tabContent.amount }}
+    </p>
+    <div class="amount__show">
+      <p class="amount__show-all">show all {{ tabTitle }}</p>
       <i class="fas fa-chevron-right" />
     </div>
   </article>
@@ -12,7 +14,7 @@
 
 <script>
 export default {
-  name: 'DashboardInfo',
+  name: 'Dashboardamount',
 
   props: {
     tabTitle: {
@@ -31,25 +33,25 @@ export default {
 </script>
 
 <style scoped>
-.amount-info {
+.amount {
   display: flex;
   flex-direction: column;
   padding: 5px 20px 5px 10px;
   border: 1px solid #ccc;
 }
 
-.info__header {
+.amount__header {
   font-size: 15px;
   color: #666;
 }
 
-.info__amount {
+.amount__created {
   margin: 10px 0;
   font-size: 50px;
   font-family: sans-serif;
 }
 
-.info__show {
+.amount__show {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
@@ -57,7 +59,7 @@ export default {
   color: rgb(130, 130, 255);
 }
 
-.info__show-all {
+.amount__show-all {
   font-family: sans-serif;
 }
 
