@@ -1,13 +1,11 @@
 <template>
   <div>
-    <v-app>
-      <AgGridVue
-        class="ag-theme-alpine grid"
-        :column-defs="columnDefs"
-        :row-data="rowData"
-        :grid-options="renderOptions"
-      />
-    </v-app>
+    <AgGridVue
+      class="ag-theme-alpine grid"
+      :column-defs="columnDefs"
+      :row-data="rowData"
+      :grid-options="renderOptions"
+    />
   </div>
 </template>
 
