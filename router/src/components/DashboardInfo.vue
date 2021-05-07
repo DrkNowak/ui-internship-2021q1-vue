@@ -32,35 +32,35 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .amount {
   display: flex;
   flex-direction: column;
   padding: 5px 20px 5px 10px;
   border: 1px solid #ccc;
-}
 
-.amount__header {
-  font-size: 15px;
-  color: #666;
-}
+  &&__header {
+    font-size: 15px;
+    color: #666;
+  }
 
-.amount__created {
-  margin: 10px 0;
-  font-size: 50px;
-  font-family: sans-serif;
-}
+  &&__created {
+    margin: 10px 0;
+    font-size: 50px;
+    font-family: sans-serif;
+  }
 
-.amount__show {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  text-transform: capitalize;
-  color: rgb(130, 130, 255);
-}
+  &&__show {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: rgb(130, 130, 255);
 
-.amount__show-all {
-  font-family: sans-serif;
+    &&__show-all {
+      font-family: sans-serif;
+    }
+  }
 }
 
 .lds-dual-ring {
