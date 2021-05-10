@@ -92,7 +92,7 @@ export default {
         labelText: (d) => `${Math.round(d.totalUnits / unitDivider)}k Units`
       };
       const lowerLabel = {
-        verticalPosition: (d) => height - verticalPadding,
+        verticalPosition: () => height - verticalPadding,
         labelText: (d) => d.name
       };
 
