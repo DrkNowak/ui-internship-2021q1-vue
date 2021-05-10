@@ -6,24 +6,11 @@
 
 <script>
 import * as d3 from 'd3';
-import chartData from '@/data/chartData';
-
+import chartData from '@/chartData/chartData';
+import chartConfig from '@/chartConfig/chartConfig';
 export default {
   data() {
     return {
-      chartProps: {
-        width: 1000,
-        height: 400,
-        verticalPadding: 50,
-        horizontalPadding: 30,
-        labelWidth: 40,
-        labelHeight: 50,
-        axisLeftLabelPosition: {
-          x: 30,
-          y: -12
-        },
-        unitDivider: 1000
-      },
       chartData: {}
     };
   },
@@ -33,7 +20,7 @@ export default {
   },
 
   mounted() {
-    this.drawChart(this.chartProps);
+    this.drawChart(chartConfig);
   },
 
   methods: {
