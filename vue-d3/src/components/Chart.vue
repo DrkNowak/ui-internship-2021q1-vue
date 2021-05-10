@@ -37,111 +37,136 @@ export default {
   },
 
   methods: {
-    drawChart(chartProps) {
+    drawChart({
+      width,
+      height,
+      verticalPadding,
+      horizontalPadding,
+      labelWidth,
+      labelHeight,
+      axisLeftLabelPosition,
+      unitDivider
+    }) {
       const { caseTypes } = this.chartData;
 
-      const generateRandomColor = () =>
-        `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      const svg = d3.select('#svgcontainer').append('svg');
 
-      const svg = d3
-        .select('#svgcontainer')
-        .append('svg')
-        .attr('width', chartProps.width)
-        .attr('height', chartProps.height);
+      svg.attr('width', width).attr('height', height);
 
       const xScale = d3
         .scaleBand()
-        .rangeRound([
-          chartProps.horizontalPadding,
-          chartProps.width - chartProps.horizontalPadding
-        ])
+        .rangeRound([horizontalPadding, width - horizontalPadding])
         .padding(0.5)
         .domain(caseTypes.map((d) => d.name));
 
       const yScale = d3
         .scaleLinear()
         .domain([0, d3.max(caseTypes, (d) => d.totalUnits)])
-        .range([
-          chartProps.height - chartProps.verticalPadding,
-          chartProps.verticalPadding
-        ]);
-
-      const make_y_gridlines = () =>
-        d3
-          .axisLeft(yScale)
-          .ticks(4)
-          .tickFormat(function (d) {
-            return d / chartProps.unitDivider;
-          });
+        .range([height - verticalPadding, verticalPadding]);
 
       const chartContainer = svg.append('g');
+      const axis = chartContainer.append('g');
 
-      const axis = chartContainer
-        .append('g')
-        .call(make_y_gridlines().tickSize(-chartProps.width))
-        .call((g) => {
-          g.selectAll('line').classed('axis-lines', true);
-
-          g.selectAll('text')
-            .attr('x', chartProps.axisLeftLabelPosition.x)
-            .attr('y', chartProps.axisLeftLabelPosition.y)
-            .classed('axis-labels', true);
-        })
-        .call((g) => g.select('.domain').remove());
+      axis
+        .call(this.createYgridlines(yScale, unitDivider).tickSize(-width))
+        .call((line) => this.setAxisLines(line))
+        .call((label) => this.setAxisLabels(label, axisLeftLabelPosition))
+        .call((g) => this.removeDomain(g));
 
       const bars = chartContainer
         .append('g')
         .selectAll('rect')
         .data(caseTypes)
         .enter()
-        .append('rect')
+        .append('rect');
+
+      bars
         .attr('x', (d) => xScale(d.name))
         .attr('y', (d) => yScale(d.totalUnits))
         .attr('width', xScale.bandwidth())
-        .attr(
-          'height',
-          (d) =>
-            chartProps.height -
-            chartProps.verticalPadding -
-            yScale(d.totalUnits)
-        )
-        .attr('fill', () => generateRandomColor());
-
-      const addBarLabels = ({ verticalPosition, labelText }) => {
-        chartContainer
-          .append('g')
-          .selectAll('foreignObject')
-          .data(caseTypes)
-          .enter()
-          .append('foreignObject')
-          .attr(
-            'x',
-            (d) =>
-              xScale(d.name) +
-              xScale.bandwidth() / 2 -
-              chartProps.labelWidth / 2
-          )
-          .attr('y', verticalPosition)
-          .attr('width', chartProps.labelWidth)
-          .attr('height', chartProps.labelHeight)
-          .append('xhtml:p')
-          .text(labelText)
-          .classed('label', true);
-      };
+        .attr('height', (d) => height - verticalPadding - yScale(d.totalUnits))
+        .attr('fill', () => this.generateRandomColor());
 
       const upperLabel = {
-        verticalPosition: (d) =>
-          yScale(d.totalUnits) - chartProps.verticalPadding / 2,
-        labelText: (d) =>
-          `${Math.round(d.totalUnits / chartProps.unitDivider)}k Units`
+        verticalPosition: (d) => yScale(d.totalUnits) - verticalPadding / 2,
+        labelText: (d) => `${Math.round(d.totalUnits / unitDivider)}k Units`
       };
       const lowerLabel = {
-        verticalPosition: (d) => chartProps.height - chartProps.verticalPadding,
+        verticalPosition: (d) => height - verticalPadding,
         labelText: (d) => d.name
       };
 
-      addBarLabels(upperLabel);
-      addBarLabels(lowerLabel);
+      this.addBarLabel(
+        chartContainer,
+        caseTypes,
+        xScale,
+        labelWidth,
+        labelHeight,
+        upperLabel
+      );
+
+      this.addBarLabel(
+        chartContainer,
+        caseTypes,
+        xScale,
+        labelWidth,
+        labelHeight,
+        lowerLabel
+      );
+    },
+
+    generateRandomColor() {
+      return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    },
+
+    createYgridlines(yScale, unitDivider) {
+      return d3
+        .axisLeft(yScale)
+        .ticks(4)
+        .tickFormat((d) => d / unitDivider);
+    },
+
+    setAxisLines(line) {
+      line.selectAll('line').classed('axis-lines', true);
+    },
+
+    setAxisLabels(label, { x, y }) {
+      label
+        .selectAll('text')
+        .attr('x', x)
+        .attr('y', y)
+        .classed('axis-labels', true);
+    },
+
+    removeDomain(axis) {
+      axis.select('.domain').remove();
+    },
+
+    addBarLabel(
+      chartContainer,
+      caseTypes,
+      xScale,
+      labelWidth,
+      labelHeight,
+      { verticalPosition, labelText }
+    ) {
+      const chartLabels = chartContainer
+        .append('g')
+        .selectAll('foreignObject')
+        .data(caseTypes)
+        .enter()
+        .append('foreignObject');
+
+      chartLabels
+        .attr(
+          'x',
+          (d) => xScale(d.name) + xScale.bandwidth() / 2 - labelWidth / 2
+        )
+        .attr('y', verticalPosition)
+        .attr('width', labelWidth)
+        .attr('height', labelHeight);
+
+      chartLabels.append('xhtml:p').text(labelText).classed('label', true);
     }
   }
 };
