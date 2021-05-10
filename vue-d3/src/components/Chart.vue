@@ -38,7 +38,7 @@ export default {
 
   methods: {
     drawChart(chartProps) {
-      const data = this.chartData;
+      const { caseTypes } = this.chartData;
 
       const generateRandomColor = () =>
         `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -56,11 +56,11 @@ export default {
           chartProps.width - chartProps.horizontalPadding
         ])
         .padding(0.5)
-        .domain(data.caseTypes.map((d) => d.name));
+        .domain(caseTypes.map((d) => d.name));
 
       const yScale = d3
         .scaleLinear()
-        .domain([0, d3.max(data.caseTypes, (d) => d.totalUnits)])
+        .domain([0, d3.max(caseTypes, (d) => d.totalUnits)])
         .range([
           chartProps.height - chartProps.verticalPadding,
           chartProps.verticalPadding
@@ -92,7 +92,7 @@ export default {
       const bars = chartContainer
         .append('g')
         .selectAll('rect')
-        .data(data.caseTypes)
+        .data(caseTypes)
         .enter()
         .append('rect')
         .attr('x', (d) => xScale(d.name))
@@ -111,7 +111,7 @@ export default {
         chartContainer
           .append('g')
           .selectAll('foreignObject')
-          .data(data.caseTypes)
+          .data(caseTypes)
           .enter()
           .append('foreignObject')
           .attr(
