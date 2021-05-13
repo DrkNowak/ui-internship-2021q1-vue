@@ -1,10 +1,11 @@
 const chartConfig = {
   width: 1000,
-  height: 400,
-  verticalPadding: 50,
-  labelWidth: 40,
-  labelHeight: 50,
-  columnWidth: 80,
+  height: 300,
+  verticalPadding: 60,
+  labelWidth: 50,
+  upperLabelHeight: 15,
+  lowerLabelHeight: 28,
+  columnWidth: 30,
   columnGap: 55,
   axisLeftLabelPosition: {
     x: 30,
