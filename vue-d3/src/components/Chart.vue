@@ -9,6 +9,7 @@ import * as d3 from 'd3';
 
 import chartData from '@/chartData/chartData';
 import chartConfig from '@/chartConfig/chartConfig';
+
 export default {
   data() {
     return {
@@ -39,38 +40,57 @@ export default {
 
       svg.attr('width', width).attr('height', height);
 
-      const yScale = this.createYScale(caseTypes, height, verticalPadding);
+      const yScale = this.createYScale({
+        data: caseTypes,
+        height,
+        verticalPadding
+      });
 
       const chartContainer = svg.append('g');
 
       const axis = chartContainer.append('g');
 
-      this.createAxis(axis, yScale, chartConfig);
+      this.createAxis({ axisContainer: axis, yScale }, chartConfig);
 
-      this.createBars(chartContainer, caseTypes, yScale, chartConfig);
+      this.createBars(
+        { chartContainer, chartData: caseTypes, yScale },
+        chartConfig
+      );
 
       const upperLabel = {
-        verticalPosition: (d) => yScale(d.totalUnits) - upperLabelHeight,
-        text: (d) => `${Math.round(d.totalUnits / unitDivider)}k Units`,
+        verticalPosition: ({ totalUnits }) =>
+          yScale(totalUnits) - upperLabelHeight,
+        text: ({ totalUnits }) =>
+          `${Math.round(totalUnits / unitDivider)}k Units`,
         height: upperLabelHeight
       };
 
       const lowerLabel = {
         verticalPosition: () => height - verticalPadding,
-        text: (d) => d.name,
+        text: ({ name }) => name,
         height: lowerLabelHeight
       };
 
-      this.addBarLabel(chartContainer, caseTypes, chartConfig, upperLabel);
+      const upperLabelContainer = this.createBarLabel(
+        chartContainer,
+        caseTypes
+      );
 
-      this.addBarLabel(chartContainer, caseTypes, chartConfig, lowerLabel);
+      this.setBarLabel(upperLabelContainer, chartConfig, upperLabel);
+
+      const lowerLabelContainer = this.createBarLabel(
+        chartContainer,
+        caseTypes
+      );
+
+      this.setBarLabel(lowerLabelContainer, chartConfig, lowerLabel);
     },
 
-    createYScale(data, height, verticalPadding) {
+    createYScale({ data, height, verticalPadding }) {
       return d3
         .scaleLinear()
         .range([height - verticalPadding, verticalPadding])
-        .domain([0, d3.max(data, (d) => d.totalUnits)]);
+        .domain([0, d3.max(data, ({ totalUnits }) => totalUnits)]);
     },
 
     generateRandomColor() {
@@ -81,19 +101,18 @@ export default {
       return d3
         .axisLeft(yScale)
         .ticks(5)
-        .tickFormat((d) => d / unitDivider);
+        .tickFormat((chartDataItem) => chartDataItem / unitDivider);
     },
 
     createAxis(
-      axisContainer,
-      yScale,
+      { axisContainer, yScale },
       { width, unitDivider, axisLeftLabelPosition }
     ) {
       axisContainer
         .call(this.createYgridlines(yScale, unitDivider).tickSize(-width))
         .call((line) => this.setAxisLines(line))
         .call((label) => this.setAxisLabels(label, axisLeftLabelPosition))
-        .call((g) => this.removeDomain(g));
+        .call((domain) => this.removeDomain(domain));
     },
 
     setAxisLines(line) {
@@ -112,23 +131,24 @@ export default {
       axis.select('.domain').remove();
     },
 
-    addBarLabel(
-      chartContainer,
-      data,
-      { labelWidth, columnWidth, columnGap },
-      { verticalPosition, text, height }
-    ) {
-      const chartLabels = chartContainer
+    createBarLabel(chartContainer, data) {
+      return chartContainer
         .append('g')
         .selectAll('foreignObject')
         .data(data)
         .enter()
         .append('foreignObject');
+    },
 
-      chartLabels
+    setBarLabel(
+      chartContainer,
+      { labelWidth, columnWidth, columnGap },
+      { verticalPosition, text, height }
+    ) {
+      chartContainer
         .attr(
           'x',
-          (d, index) =>
+          (chartDataItem, index) =>
             index * (columnWidth + columnGap) +
             columnGap +
             (columnWidth - labelWidth) / 2
@@ -137,16 +157,14 @@ export default {
         .attr('width', labelWidth)
         .attr('height', height);
 
-      chartLabels.append('xhtml:p').text(text).classed('label', true);
+      chartContainer.append('xhtml:p').text(text).classed('label', true);
     },
 
     createBars(
-      svgContainer,
-      chartData,
-      yScale,
+      { chartContainer, chartData, yScale },
       { columnWidth, columnGap, verticalPadding, height }
     ) {
-      const bars = svgContainer
+      const bars = chartContainer
         .append('g')
         .selectAll('rect')
         .data(chartData)
@@ -154,11 +172,18 @@ export default {
         .append('rect');
 
       bars
-        .attr('x', (d, index) => index * (columnWidth + columnGap) + columnGap)
-        .attr('y', (d) => yScale(d.totalUnits))
+        .attr(
+          'x',
+          (chartDataItem, index) =>
+            index * (columnWidth + columnGap) + columnGap
+        )
+        .attr('y', ({ totalUnits }) => yScale(totalUnits))
         .attr('width', columnWidth)
 
-        .attr('height', (d) => height - verticalPadding - yScale(d.totalUnits))
+        .attr(
+          'height',
+          ({ totalUnits }) => height - verticalPadding - yScale(totalUnits)
+        )
         .attr('fill', () => this.generateRandomColor())
         .classed('bar', true);
     }
