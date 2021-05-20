@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app>
     <Chart />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -13,4 +13,3 @@ export default {
   }
 };
 </script>
-<style lang="scss"></style>

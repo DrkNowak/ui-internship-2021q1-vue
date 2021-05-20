@@ -5,13 +5,13 @@ const data = {
   },
   caseTypes: [
     {
-      name: 'Customer Master',
+      name: 'Customer Master aaaa aaa aaaaa Customer Master aaaa aaa aaaaa',
       caseGroupId: 3,
       totalExceptions: 23,
       totalUnits: 1000
     },
     {
-      name: 'Material Master ',
+      name: 'Material Master',
       caseGroupId: 4,
       totalExceptions: 226,
       totalUnits: 5992
@@ -20,7 +20,7 @@ const data = {
       name: 'Legal Statutory Compliance',
       caseGroupId: 8,
       totalExceptions: 2,
-      totalUnits: 8000
+      totalUnits: 20000
     },
     {
       name: 'Comp Portal',
@@ -43,6 +43,48 @@ const data = {
     {
       name: 'RSO',
       caseGroupId: 12,
+      totalExceptions: 18,
+      totalUnits: 1000
+    },
+    {
+      name: 'Customer Master aaaa aaa aaaaac',
+      caseGroupId: 13,
+      totalExceptions: 23,
+      totalUnits: 1000
+    },
+    {
+      name: 'Material Masterc',
+      caseGroupId: 14,
+      totalExceptions: 226,
+      totalUnits: 5992
+    },
+    {
+      name: 'Legal Statutory Compliancec',
+      caseGroupId: 18,
+      totalExceptions: 2,
+      totalUnits: 20000
+    },
+    {
+      name: 'Comp Portalc',
+      caseGroupId: 19,
+      totalExceptions: 5,
+      totalUnits: 1000
+    },
+    {
+      name: 'STOc',
+      caseGroupId: 110,
+      totalExceptions: 223,
+      totalUnits: 1000
+    },
+    {
+      name: 'RSTOc',
+      caseGroupId: 111,
+      totalExceptions: 23,
+      totalUnits: 3680
+    },
+    {
+      name: 'RSOc',
+      caseGroupId: 121,
       totalExceptions: 18,
       totalUnits: 1000
     }

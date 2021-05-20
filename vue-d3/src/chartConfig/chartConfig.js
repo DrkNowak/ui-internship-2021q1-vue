@@ -1,15 +1,17 @@
 const chartConfig = {
   width: 1000,
-  height: 400,
-  verticalPadding: 50,
-  labelWidth: 40,
-  labelHeight: 50,
-  columnWidth: 80,
+  height: 300,
+  columnWidth: 45,
   columnGap: 55,
-  axisLeftLabelPosition: {
-    x: 30,
-    y: -12
+  verticalPadding: 60,
+  labelWidth: 65,
+  upperLabelHeight: 15,
+  lowerLabelHeight: 30,
+  axisLeftLines: {
+    ticks: 4,
+    maxValue: 20000
   },
+  axisLabelPositionX: 30,
   unitDivider: 1000
 };
 
