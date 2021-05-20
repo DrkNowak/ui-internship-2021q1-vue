@@ -6,24 +6,13 @@
 
 <script>
 import * as d3 from 'd3';
-import chartData from '@/data/chartData';
+
+import chartData from '@/chartData/chartData';
+import chartConfig from '@/chartConfig/chartConfig';
 
 export default {
   data() {
     return {
-      chartProps: {
-        width: 1000,
-        height: 400,
-        verticalPadding: 50,
-        horizontalPadding: 30,
-        labelWidth: 40,
-        labelHeight: 50,
-        axisLeftLabelPosition: {
-          x: 30,
-          y: -12
-        },
-        unitDivider: 1000
-      },
       chartData: {}
     };
   },
@@ -33,7 +22,7 @@ export default {
   },
 
   mounted() {
-    this.drawChart(this.chartProps);
+    this.drawChart(chartConfig);
   },
 
   methods: {
@@ -41,11 +30,9 @@ export default {
       width,
       height,
       verticalPadding,
-      horizontalPadding,
-      labelWidth,
-      labelHeight,
-      axisLeftLabelPosition,
-      unitDivider
+      unitDivider,
+      upperLabelHeight,
+      lowerLabelHeight
     }) {
       const { caseTypes } = this.chartData;
 
@@ -53,66 +40,57 @@ export default {
 
       svg.attr('width', width).attr('height', height);
 
-      const xScale = d3
-        .scaleBand()
-        .rangeRound([horizontalPadding, width - horizontalPadding])
-        .padding(0.5)
-        .domain(caseTypes.map((d) => d.name));
-
-      const yScale = d3
-        .scaleLinear()
-        .domain([0, d3.max(caseTypes, (d) => d.totalUnits)])
-        .range([height - verticalPadding, verticalPadding]);
+      const yScale = this.createYScale({
+        data: caseTypes,
+        height,
+        verticalPadding
+      });
 
       const chartContainer = svg.append('g');
+
       const axis = chartContainer.append('g');
 
-      axis
-        .call(this.createYgridlines(yScale, unitDivider).tickSize(-width))
-        .call((line) => this.setAxisLines(line))
-        .call((label) => this.setAxisLabels(label, axisLeftLabelPosition))
-        .call((g) => this.removeDomain(g));
+      this.createAxis({ axisContainer: axis, yScale }, chartConfig);
 
-      const bars = chartContainer
-        .append('g')
-        .selectAll('rect')
-        .data(caseTypes)
-        .enter()
-        .append('rect');
-
-      bars
-        .attr('x', (d) => xScale(d.name))
-        .attr('y', (d) => yScale(d.totalUnits))
-        .attr('width', xScale.bandwidth())
-        .attr('height', (d) => height - verticalPadding - yScale(d.totalUnits))
-        .attr('fill', () => this.generateRandomColor());
+      this.createBars(
+        { chartContainer, chartData: caseTypes, yScale },
+        chartConfig
+      );
 
       const upperLabel = {
-        verticalPosition: (d) => yScale(d.totalUnits) - verticalPadding / 2,
-        labelText: (d) => `${Math.round(d.totalUnits / unitDivider)}k Units`
+        verticalPosition: ({ totalUnits }) =>
+          yScale(totalUnits) - upperLabelHeight,
+        text: ({ totalUnits }) =>
+          `${Math.round(totalUnits / unitDivider)}k Units`,
+        height: upperLabelHeight
       };
+
       const lowerLabel = {
         verticalPosition: () => height - verticalPadding,
-        labelText: (d) => d.name
+        text: ({ name }) => name,
+        height: lowerLabelHeight
       };
 
-      this.addBarLabel(
+      const upperLabelContainer = this.createBarLabel(
         chartContainer,
-        caseTypes,
-        xScale,
-        labelWidth,
-        labelHeight,
-        upperLabel
+        caseTypes
       );
 
-      this.addBarLabel(
+      this.setBarLabel(upperLabelContainer, chartConfig, upperLabel);
+
+      const lowerLabelContainer = this.createBarLabel(
         chartContainer,
-        caseTypes,
-        xScale,
-        labelWidth,
-        labelHeight,
-        lowerLabel
+        caseTypes
       );
+
+      this.setBarLabel(lowerLabelContainer, chartConfig, lowerLabel);
+    },
+
+    createYScale({ data, height, verticalPadding }) {
+      return d3
+        .scaleLinear()
+        .range([height - verticalPadding, verticalPadding])
+        .domain([0, d3.max(data, ({ totalUnits }) => totalUnits)]);
     },
 
     generateRandomColor() {
@@ -122,8 +100,19 @@ export default {
     createYgridlines(yScale, unitDivider) {
       return d3
         .axisLeft(yScale)
-        .ticks(4)
-        .tickFormat((d) => d / unitDivider);
+        .ticks(5)
+        .tickFormat((chartDataItem) => chartDataItem / unitDivider);
+    },
+
+    createAxis(
+      { axisContainer, yScale },
+      { width, unitDivider, axisLeftLabelPosition }
+    ) {
+      axisContainer
+        .call(this.createYgridlines(yScale, unitDivider).tickSize(-width))
+        .call((line) => this.setAxisLines(line))
+        .call((label) => this.setAxisLabels(label, axisLeftLabelPosition))
+        .call((domain) => this.removeDomain(domain));
     },
 
     setAxisLines(line) {
@@ -142,37 +131,71 @@ export default {
       axis.select('.domain').remove();
     },
 
-    addBarLabel(
-      chartContainer,
-      caseTypes,
-      xScale,
-      labelWidth,
-      labelHeight,
-      { verticalPosition, labelText }
-    ) {
-      const chartLabels = chartContainer
+    createBarLabel(chartContainer, data) {
+      return chartContainer
         .append('g')
         .selectAll('foreignObject')
-        .data(caseTypes)
+        .data(data)
         .enter()
         .append('foreignObject');
+    },
 
-      chartLabels
+    setBarLabel(
+      chartContainer,
+      { labelWidth, columnWidth, columnGap },
+      { verticalPosition, text, height }
+    ) {
+      chartContainer
         .attr(
           'x',
-          (d) => xScale(d.name) + xScale.bandwidth() / 2 - labelWidth / 2
+          (chartDataItem, index) =>
+            index * (columnWidth + columnGap) +
+            columnGap +
+            (columnWidth - labelWidth) / 2
         )
         .attr('y', verticalPosition)
         .attr('width', labelWidth)
-        .attr('height', labelHeight);
+        .attr('height', height);
 
-      chartLabels.append('xhtml:p').text(labelText).classed('label', true);
+      chartContainer.append('xhtml:p').text(text).classed('label', true);
+    },
+
+    createBars(
+      { chartContainer, chartData, yScale },
+      { columnWidth, columnGap, verticalPadding, height }
+    ) {
+      const bars = chartContainer
+        .append('g')
+        .selectAll('rect')
+        .data(chartData)
+        .enter()
+        .append('rect');
+
+      bars
+        .attr(
+          'x',
+          (chartDataItem, index) =>
+            index * (columnWidth + columnGap) + columnGap
+        )
+        .attr('y', ({ totalUnits }) => yScale(totalUnits))
+        .attr('width', columnWidth)
+
+        .attr(
+          'height',
+          ({ totalUnits }) => height - verticalPadding - yScale(totalUnits)
+        )
+        .attr('fill', () => this.generateRandomColor())
+        .classed('bar', true);
     }
   }
 };
 </script>
 
 <style>
+#svgcontainer {
+  margin-left: 50px;
+}
+
 .bar {
   display: flex;
   background-color: #fff;
@@ -186,7 +209,7 @@ export default {
 
 .axis-labels {
   stroke: #aaa;
-  text-anchor: middle;
+  text-anchor: left;
 }
 
 .axis-lines {
